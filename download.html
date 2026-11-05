@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Скачать — SkiClient</title>
+	<meta name="description" content="Скачайте SkiClient для Minecraft 1.21.11 (Fabric) и установите за пару минут по пошаговой инструкции.">
+	<meta property="og:image" content="assets/img/og.jpg">
+	<meta name="theme-color" content="#06090e">
+	<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script>try{document.documentElement.dataset.theme=localStorage.getItem("ski-theme")||"sky"}catch(e){}</script>
+</head>
+<body data-page="download">
+	<div class="bg-grid"></div>
+	<div class="bg-glow one"></div>
+	<div class="bg-glow two"></div>
+	<canvas id="snow" aria-hidden="true"></canvas>
+
+	<header class="header">
+		<div class="wrap">
+			<a class="logo" href="index.html" aria-label="SkiClient — на главную">
+				<span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M3 11l3 1-.5 3M21 13l-3-1 .5-3M3 13l3-1-.5-3M21 11l-3 1 .5 3"/></svg></span>
+				<span>SkiClient<small>PVP CLIENT</small></span>
+			</a>
+			<nav class="nav" id="nav">
+				<a href="index.html" data-nav="home">Главная</a>
+				<a href="features.html" data-nav="features">Функции</a>
+				<a href="pricing.html" data-nav="pricing">Подписка</a>
+				<a href="download.html" data-nav="download">Скачать</a>
+				<a href="faq.html" data-nav="faq">FAQ</a>
+			</nav>
+			<a class="btn btn-primary btn-sm btn-desktop" href="pricing.html">Купить Pro</a>
+			<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+		</div>
+	</header>
+
+	<main>
+		<section class="wrap dl-hero">
+			<div>
+				<span class="eyebrow reveal">Скачать</span>
+				<h1 data-split>SkiClient <span class="accent">v<span data-cfg="version"></span></span></h1>
+				<p class="reveal" style="--d:.4s">Один <code class="mono">.jar</code> для Fabric — ставится как обычный мод. Бесплатные модули работают сразу после установки, Pro открывается ключом прямо в игре.</p>
+				<div class="hero-meta reveal" style="--d:.55s;justify-content:flex-start">
+					<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Windows, macOS, Linux</span>
+					<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Любой лаунчер с Fabric</span>
+				</div>
+			</div>
+			<div class="card glow-card dl-card reveal from-right" style="--d:.2s">
+				<div class="dl-file">
+					<div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></div>
+					<div><b>skiclient-<span data-cfg="version"></span>.jar</b><small><span data-cfg="jarSize"></span> · Fabric · Minecraft <span data-cfg="minecraft"></span></small></div>
+				</div>
+				<a class="btn btn-primary btn-lg btn-block" data-link="jar" download id="dl-btn">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+					Скачать SkiClient
+				</a>
+				<div class="progress" id="dl-progress"><i></i></div>
+				<div class="req">
+					<div><span>Minecraft</span><b data-cfg="minecraft"></b></div>
+					<div><span>Fabric Loader</span><b><span data-cfg="loader"></span>+</b></div>
+					<div><span>Fabric API</span><b>последняя для 1.21.11</b></div>
+					<div><span>Java</span><b>21+</b></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="wrap">
+				<div class="section-head center reveal">
+					<span class="eyebrow">Установка</span>
+					<h2>Пять шагов до первой катки</h2>
+					<p>Если Fabric у вас уже стоит — переходите сразу к шагу 3.</p>
+				</div>
+				<div class="timeline" data-stagger=".1">
+					<div class="tl-item">
+						<div class="tl-num">1</div>
+						<div class="card glow-card">
+							<h3>Установите Fabric Loader</h3>
+							<p>Скачайте установщик с <a class="accent" href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">fabricmc.net</a>, выберите версию Minecraft <b data-cfg="minecraft"></b> и нажмите «Install». В лаунчере появится профиль <code class="mono">fabric-loader-1.21.11</code>.</p>
+						</div>
+					</div>
+					<div class="tl-item">
+						<div class="tl-num">2</div>
+						<div class="card glow-card">
+							<h3>Скачайте Fabric API</h3>
+							<p>SkiClient использует Fabric API. Возьмите версию для 1.21.11 на <a class="accent" href="https://modrinth.com/mod/fabric-api" target="_blank" rel="noopener">Modrinth</a>.</p>
+						</div>
+					</div>
+					<div class="tl-item">
+						<div class="tl-num">3</div>
+						<div class="card glow-card">
+							<h3>Положите файлы в папку mods</h3>
+							<p>Скопируйте <code class="mono">skiclient-<span data-cfg="version"></span>.jar</code> и Fabric API в папку модов. Если папки нет — создайте её.</p>
+							<div class="path" id="mods-path">%appdata%\.minecraft\mods</div>
+						</div>
+					</div>
+					<div class="tl-item">
+						<div class="tl-num">4</div>
+						<div class="card glow-card">
+							<h3>Запустите игру через профиль Fabric</h3>
+							<p>В лаунчере выберите профиль Fabric и нажмите «Играть». SkiClient загрузится вместе с игрой.</p>
+						</div>
+					</div>
+					<div class="tl-item">
+						<div class="tl-num">5</div>
+						<div class="card glow-card">
+							<h3>Нажмите <span class="kbd">RSHIFT</span></h3>
+							<p>Откроется меню клиента. Включите нужные модули, выберите тему, а если есть ключ — введите его в карточке профиля внизу слева.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-sm">
+			<div class="wrap">
+				<div class="card changelog reveal">
+					<h3><span class="badge badge-pro">v<span data-cfg="version"></span></span> Первый релиз</h3>
+					<ul>
+						<li><span data-cfg="modules"></span> модуля в шести категориях: Визуал, HUD, Оптимизация, Мир, Доступность и Интерфейс</li>
+						<li>Новое меню с поиском, биндами и шестью цветовыми темами</li>
+						<li>Конфиги: сохранение, экспорт и импорт перетаскиванием файла</li>
+						<li>Подписка Pro по одноразовым ключам на 30 дней</li>
+						<li>Русский и английский язык интерфейса</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-sm">
+			<div class="wrap">
+				<div class="cta reveal zoom">
+					<span class="eyebrow">Что-то не запускается?</span>
+					<h2 style="margin-top:16px">Загляните в <span class="accent">FAQ</span></h2>
+					<p>Там собраны частые проблемы с установкой и их решения.</p>
+					<div class="btns">
+						<a class="btn btn-primary btn-lg" href="faq.html">Открыть FAQ</a>
+						<a class="btn btn-ghost btn-lg" data-link="discord">Поддержка в Discord</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="wrap">
+			<div class="footer-grid">
+				<div>
+					<a class="logo" href="index.html">
+						<span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M3 11l3 1-.5 3M21 13l-3-1 .5-3M3 13l3-1-.5-3M21 11l-3 1 .5 3"/></svg></span>
+						<span>SkiClient<small>PVP CLIENT</small></span>
+					</a>
+					<p>Лёгкий клиент для Minecraft на Fabric: HUD, визуальные настройки и оптимизация.</p>
+				</div>
+				<div>
+					<h4>Клиент</h4>
+					<ul><li><a href="features.html">Функции</a></li><li><a href="pricing.html">Подписка</a></li><li><a href="download.html">Скачать</a></li><li><a href="faq.html">FAQ</a></li></ul>
+				</div>
+				<div>
+					<h4>Сообщество</h4>
+					<ul><li><a data-link="discord">Discord</a></li><li><a data-link="telegram">Telegram</a></li><li><a data-link="buy">Купить ключ</a></li></ul>
+				</div>
+				<div>
+					<h4>Версия</h4>
+					<ul><li class="muted">SkiClient <span data-cfg="version"></span></li><li class="muted">Minecraft <span data-cfg="minecraft"></span></li><li class="muted">Fabric Loader <span data-cfg="loader"></span>+</li></ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<span>© <span data-year></span> SkiClient</span>
+				<span>Не является официальным продуктом Minecraft. Не одобрено и не связано с Mojang или Microsoft.</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		(() => {
+			// Folder hint for the visitor's OS, and a short progress flourish on the download button
+			const p = navigator.platform || navigator.userAgent;
+			const path = document.getElementById("mods-path");
+			if (/Mac/i.test(p)) path.textContent = "~/Library/Application Support/minecraft/mods";
+			else if (/Linux/i.test(p)) path.textContent = "~/.minecraft/mods";
+			document.getElementById("dl-btn").addEventListener("click", () => {
+				const bar = document.getElementById("dl-progress");
+				bar.classList.add("show");
+				requestAnimationFrame(() => { bar.querySelector("i").style.width = "100%"; });
+				setTimeout(() => { bar.classList.remove("show"); bar.querySelector("i").style.width = "0"; }, 1800);
+				window.SKI.toast("Загрузка началась. Положите файл в папку mods.");
+			});
+		})();
+	</script>
+</body>
+</html>

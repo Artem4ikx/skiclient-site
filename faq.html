@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FAQ — SkiClient</title>
+	<meta name="description" content="Частые вопросы о SkiClient: установка, подписка Pro, активация ключа, совместимость с серверами.">
+	<meta property="og:image" content="assets/img/og.jpg">
+	<meta name="theme-color" content="#06090e">
+	<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script>try{document.documentElement.dataset.theme=localStorage.getItem("ski-theme")||"sky"}catch(e){}</script>
+</head>
+<body data-page="faq">
+	<div class="bg-grid"></div>
+	<div class="bg-glow one"></div>
+	<div class="bg-glow two"></div>
+	<canvas id="snow" aria-hidden="true"></canvas>
+
+	<header class="header">
+		<div class="wrap">
+			<a class="logo" href="index.html" aria-label="SkiClient — на главную">
+				<span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M3 11l3 1-.5 3M21 13l-3-1 .5-3M3 13l3-1-.5-3M21 11l-3 1 .5 3"/></svg></span>
+				<span>SkiClient<small>PVP CLIENT</small></span>
+			</a>
+			<nav class="nav" id="nav">
+				<a href="index.html" data-nav="home">Главная</a>
+				<a href="features.html" data-nav="features">Функции</a>
+				<a href="pricing.html" data-nav="pricing">Подписка</a>
+				<a href="download.html" data-nav="download">Скачать</a>
+				<a href="faq.html" data-nav="faq">FAQ</a>
+			</nav>
+			<a class="btn btn-primary btn-sm btn-desktop" href="pricing.html">Купить Pro</a>
+			<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+		</div>
+	</header>
+
+	<main>
+		<section class="page-hero">
+			<div class="wrap">
+				<span class="eyebrow reveal">FAQ</span>
+				<h1 data-split>Частые <span class="accent">вопросы</span></h1>
+				<p class="reveal" style="--d:.3s">Не нашли ответ? Напишите нам в <a class="accent" data-link="discord">Discord</a> или <a class="accent" data-link="telegram">Telegram</a>.</p>
+			</div>
+		</section>
+
+		<section class="section-sm" style="padding-top:20px">
+			<div class="wrap">
+				<div class="faq" data-stagger=".04">
+					<div class="faq-group">О клиенте</div>
+					<details class="card qa">
+						<summary>Что такое SkiClient?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Клиентский мод для Minecraft на Fabric: HUD с информацией об игре (FPS, CPS, пинг, броня, зелья, Keystrokes), визуальные настройки (FullBright, цвет хитбоксов, свой прицел, небо и туман) и оптимизация FPS. Всё управляется из одного меню на Right Shift.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Это чит? Меня не забанят?<span class="plus"></span></summary>
+						<div class="answer"><div><p>В SkiClient нет автоматизации игры: ни автокликера, ни авто-атаки, ни движения за игрока. Модули только показывают информацию и меняют картинку — как в популярных PvP-клиентах.</p><p>Но правила у серверов разные: некоторые, например, запрещают FullBright или отображение хитбоксов. Перед игрой проверьте правила своего сервера и выключите то, что там не разрешено.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Какие версии Minecraft поддерживаются?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Текущая версия рассчитана на Minecraft <b data-cfg="minecraft"></b> с Fabric Loader <span data-cfg="loader"></span> или новее и Fabric API. Нужна Java 21.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Можно ставить вместе с другими модами?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Да, SkiClient — обычный Fabric-мод и ставится в ту же папку <code>mods</code>. Если заметите конфликт с каким-то модом, напишите в поддержку и укажите список модов.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Как поменять язык или тему меню?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Откройте меню, перейдите в категорию «Интерфейс» и выберите модуль Click GUI. Там же меняется клавиша открытия меню. Язык по умолчанию подстраивается под язык игры.</p></div></div>
+					</details>
+
+					<div class="faq-group">Подписка Pro</div>
+					<details class="card qa">
+						<summary>Чем Free отличается от Pro?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Во Free навсегда бесплатно доступны FullBright, FPS Counter, CPS Counter, Ping, Custom Crosshair и Click GUI. Pro открывает все остальные модули — всего их <span data-cfg="modules"></span>. Полное сравнение — на странице <a class="accent" href="pricing.html">«Подписка»</a>.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Как активировать ключ?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Откройте меню на <span class="kbd">RSHIFT</span>, нажмите «Ввести ключ» в карточке профиля внизу слева, вставьте ключ через <span class="kbd">CTRL+V</span> и нажмите «Активировать». Pro включится сразу, перезапускать игру не нужно.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Подписка продлевается автоматически?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Нет. Ключ даёт ровно 30 дней Pro, никаких автосписаний. Если активировать новый ключ, пока Pro ещё действует, 30 дней добавятся к оставшемуся сроку.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Что будет, когда Pro закончится?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Модули Pro выключатся, а бесплатные продолжат работать. Ваши настройки при этом не теряются: после продления все модули включатся так же, как были.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Нужен ли интернет для Pro?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Только для активации ключа. Дальше клиент сверяет подписку с сервером раз в 10 минут, но без интернета Pro продолжит работать до конца оплаченного срока.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Можно перенести Pro на другой компьютер?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Подписка привязывается к компьютеру, на котором активирован ключ. Если вы сменили ПК, напишите в поддержку.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Пишет «Этот ключ уже был использован»<span class="plus"></span></summary>
+						<div class="answer"><div><p>Каждый ключ одноразовый. Если вы его ещё не вводили, напишите в поддержку и приложите подтверждение покупки.</p></div></div>
+					</details>
+
+					<div class="faq-group">Установка и проблемы</div>
+					<details class="card qa">
+						<summary>Меню не открывается на Right Shift<span class="plus"></span></summary>
+						<div class="answer"><div><p>Проверьте, что запускаете профиль Fabric, а не обычный, и что в папке <code>mods</code> лежит Fabric API. Если клавишу меню переназначили, её можно сбросить: откройте меню и нажмите <span class="kbd">BACKSPACE</span> в поле клавиши модуля Click GUI.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Игра вылетает при запуске<span class="plus"></span></summary>
+						<div class="answer"><div><p>Чаще всего не хватает Fabric API или версия игры не та. Убедитесь, что используете Minecraft <span data-cfg="minecraft"></span>, Java 21 и свежий Fabric API. Если не помогло — пришлите в поддержку файл <code>logs/latest.log</code>.</p></div></div>
+					</details>
+					<details class="card qa">
+						<summary>Где хранятся настройки и конфиги?<span class="plus"></span></summary>
+						<div class="answer"><div><p>Основные настройки — в <code>.minecraft/config/skiclient.json</code>, сохранённые конфиги — в <code>.minecraft/config/skiclient/configs</code>. Конфиги можно копировать и отправлять друзьям, а импортировать — перетаскиванием файла в окно игры.</p></div></div>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-sm">
+			<div class="wrap">
+				<div class="cta reveal zoom">
+					<span class="eyebrow">Поддержка</span>
+					<h2 style="margin-top:16px">Не нашли <span class="accent">ответ?</span></h2>
+					<p>Напишите нам — поможем с установкой, ключом или настройками.</p>
+					<div class="btns">
+						<a class="btn btn-primary btn-lg" data-link="discord">Discord</a>
+						<a class="btn btn-ghost btn-lg" data-link="telegram">Telegram</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="wrap">
+			<div class="footer-grid">
+				<div>
+					<a class="logo" href="index.html">
+						<span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M3 11l3 1-.5 3M21 13l-3-1 .5-3M3 13l3-1-.5-3M21 11l-3 1 .5 3"/></svg></span>
+						<span>SkiClient<small>PVP CLIENT</small></span>
+					</a>
+					<p>Лёгкий клиент для Minecraft на Fabric: HUD, визуальные настройки и оптимизация.</p>
+				</div>
+				<div>
+					<h4>Клиент</h4>
+					<ul><li><a href="features.html">Функции</a></li><li><a href="pricing.html">Подписка</a></li><li><a href="download.html">Скачать</a></li><li><a href="faq.html">FAQ</a></li></ul>
+				</div>
+				<div>
+					<h4>Сообщество</h4>
+					<ul><li><a data-link="discord">Discord</a></li><li><a data-link="telegram">Telegram</a></li><li><a data-link="buy">Купить ключ</a></li></ul>
+				</div>
+				<div>
+					<h4>Версия</h4>
+					<ul><li class="muted">SkiClient <span data-cfg="version"></span></li><li class="muted">Minecraft <span data-cfg="minecraft"></span></li><li class="muted">Fabric Loader <span data-cfg="loader"></span>+</li></ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<span>© <span data-year></span> SkiClient</span>
+				<span>Не является официальным продуктом Minecraft. Не одобрено и не связано с Mojang или Microsoft.</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>

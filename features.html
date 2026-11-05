@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Функции — SkiClient</title>
+	<meta name="description" content="Все 24 модуля SkiClient: Keystrokes, CPS Counter, Armor HUD, Potion HUD, Custom Crosshair, Hitbox Color, FullBright, Entity Culling и другие.">
+	<meta property="og:image" content="assets/img/og.jpg">
+	<meta name="theme-color" content="#06090e">
+	<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script>try{document.documentElement.dataset.theme=localStorage.getItem("ski-theme")||"sky"}catch(e){}</script>
+</head>
+<body data-page="features">
+	<div class="bg-grid"></div>
+	<div class="bg-glow one"></div>
+	<div class="bg-glow two"></div>
+	<canvas id="snow" aria-hidden="true"></canvas>
+
+	<header class="header">
+		<div class="wrap">
+			<a class="logo" href="index.html" aria-label="SkiClient — на главную">
+				<span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M3 11l3 1-.5 3M21 13l-3-1 .5-3M3 13l3-1-.5-3M21 11l-3 1 .5 3"/></svg></span>
+				<span>SkiClient<small>PVP CLIENT</small></span>
+			</a>
+			<nav class="nav" id="nav">
+				<a href="index.html" data-nav="home">Главная</a>
+				<a href="features.html" data-nav="features">Функции</a>
+				<a href="pricing.html" data-nav="pricing">Подписка</a>
+				<a href="download.html" data-nav="download">Скачать</a>
+				<a href="faq.html" data-nav="faq">FAQ</a>
+			</nav>
+			<a class="btn btn-primary btn-sm btn-desktop" href="pricing.html">Купить Pro</a>
+			<button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+		</div>
+	</header>
+
+	<main>
+		<section class="page-hero">
+			<div class="wrap">
+				<span class="eyebrow reveal">Функции</span>
+				<h1 data-split><span data-cfg="modules"></span> модуля. <span class="accent">Ноль лишнего.</span></h1>
+				<p class="reveal" style="--d:.4s">Нажмите на карточку, чтобы увидеть все настройки модуля. Метка <span class="badge badge-free">FREE</span> — работает без ключа, <span class="badge badge-pro">PRO</span> — открывается подпиской.</p>
+			</div>
+		</section>
+
+		<section class="section-sm" style="padding-top:20px">
+			<div class="wrap">
+				<div class="toolbar reveal">
+					<label class="search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+						<input type="search" id="q" placeholder="Поиск модулей..." autocomplete="off" aria-label="Поиск модулей">
+					</label>
+					<div class="seg plan-filter" id="plan" role="group" aria-label="План">
+						<button class="on" data-plan="all">Все</button>
+						<button data-plan="free">Free</button>
+						<button data-plan="pro">Pro</button>
+					</div>
+					<div class="tabs" id="tabs" role="group" aria-label="Категории"></div>
+				</div>
+
+				<div class="modules" id="modules"></div>
+				<div class="empty" id="empty"><h3>Ничего не найдено</h3><p>Попробуйте другой запрос.</p></div>
+			</div>
+		</section>
+
+		<!-- ============================================================ CROSSHAIR -->
+		<section class="section">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="eyebrow">Custom Crosshair · Free</span>
+					<h2>Соберите свой прицел</h2>
+					<p>Те же настройки, что в клиенте. Наведите курсор на превью — так прицел выглядит, когда смотрит на цель.</p>
+				</div>
+				<div class="playground">
+					<div class="card pg-view reveal from-left" id="pg-view">
+						<span class="badge badge-free pg-label">ПРЕВЬЮ</span>
+						<canvas id="crosshair" width="400" height="400" aria-label="Превью прицела"></canvas>
+						<div class="pg-target"><span class="kbd">HOVER</span> подсветка на цели</div>
+					</div>
+					<div class="card pg-controls reveal from-right">
+						<div class="pg-row">
+							<label>Стиль</label>
+							<div class="seg" id="ch-style">
+								<button class="on" data-v="cross">Крест</button>
+								<button data-v="crossdot">Крест + точка</button>
+								<button data-v="dot">Точка</button>
+								<button data-v="circle">Круг</button>
+							</div>
+						</div>
+						<div class="pg-row"><label for="ch-size">Размер <output id="o-size">4</output></label><input type="range" id="ch-size" min="1" max="10" step="0.5" value="4"></div>
+						<div class="pg-row"><label for="ch-gap">Отступ <output id="o-gap">1.5</output></label><input type="range" id="ch-gap" min="0" max="6" step="0.5" value="1.5"></div>
+						<div class="pg-row"><label for="ch-thick">Толщина <output id="o-thick">1</output></label><input type="range" id="ch-thick" min="0.5" max="3" step="0.5" value="1"></div>
+						<div class="pg-row">
+							<label>Цвет</label>
+							<div class="colors" id="ch-color"></div>
+						</div>
+						<div class="mini-card on" style="background:transparent"><b>Обводка</b><button class="toggle on" id="ch-outline" aria-label="Обводка" aria-pressed="true"></button></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================ CONFIGS -->
+		<section class="section">
+			<div class="wrap">
+				<div class="bento">
+					<article class="card glow-card span-3 reveal">
+						<div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg></div>
+						<h3>Конфиги и обмен настройками</h3>
+						<p>Сохраняйте наборы настроек под разные режимы, экспортируйте их в <code class="mono">.json</code> и отправляйте друзьям. Чтобы импортировать конфиг, просто перетащите файл в окно игры.</p>
+					</article>
+					<article class="card glow-card span-3 reveal" style="--d:.1s">
+						<div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h10"/></svg></div>
+						<h3>Бинды на любой модуль</h3>
+						<p>Назначьте клавишу — и модуль включается прямо в игре, без меню. <span class="kbd">ПКМ</span> по карточке в меню — быстрое вкл/выкл, <span class="kbd">BACKSPACE</span> убирает бинд.</p>
+					</article>
+					<article class="card glow-card span-2 reveal">
+						<div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+						<h3>Поиск по модулям</h3>
+						<p>Ищет и по названию, и по описанию — на русском и английском.</p>
+					</article>
+					<article class="card glow-card span-2 reveal" style="--d:.1s">
+						<div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg></div>
+						<h3>Русский и English</h3>
+						<p>Язык меню выбирается автоматически по языку игры или вручную.</p>
+					</article>
+					<article class="card glow-card span-2 wide-md reveal" style="--d:.2s">
+						<div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="13" r="2"/><circle cx="6" cy="12" r="3"/><circle cx="11" cy="19" r="2"/></svg></div>
+						<h3>Шесть тем</h3>
+						<p>Sky, Ocean, Mono, Amethyst, Crimson и Emerald. Цвет темы подхватывают Keystrokes и прицел.</p>
+						<div class="bento-visual"><div class="theme-picker" style="margin:0" data-theme-swatches></div></div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-sm">
+			<div class="wrap">
+				<div class="cta reveal zoom">
+					<span class="eyebrow">Готовы попробовать?</span>
+					<h2 style="margin-top:16px">Скачайте и откройте меню на <span class="accent">Right Shift</span></h2>
+					<p><span data-cfg="free"></span> модулей работают бесплатно. Остальные <span data-cfg="pro"></span> — с ключом Pro.</p>
+					<div class="btns">
+						<a class="btn btn-primary btn-lg" href="download.html">Скачать SkiClient</a>
+						<a class="btn btn-ghost btn-lg" href="pricing.html">Тарифы</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- module details drawer -->
+	<div class="drawer-backdrop" id="drawer-backdrop"></div>
+	<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-title" role="dialog">
+		<button class="drawer-close" id="drawer-close" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+		<div class="drawer-head">
+			<span class="eyebrow" id="drawer-cat"></span>
+			<h3 id="drawer-title"></h3>
+			<p id="drawer-desc"></p>
+		</div>
+		<div class="drawer-body" id="drawer-body"></div>
+		<div class="drawer-foot" id="drawer-foot"></div>
+	</aside>
+
+	<footer class="footer">
+		<div class="wrap">
+			<div class="footer-grid">
+				<div>
+					<a class="logo" href="index.html">
+						<span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M3 11l3 1-.5 3M21 13l-3-1 .5-3M3 13l3-1-.5-3M21 11l-3 1 .5 3"/></svg></span>
+						<span>SkiClient<small>PVP CLIENT</small></span>
+					</a>
+					<p>Лёгкий клиент для Minecraft на Fabric: HUD, визуальные настройки и оптимизация.</p>
+				</div>
+				<div>
+					<h4>Клиент</h4>
+					<ul><li><a href="features.html">Функции</a></li><li><a href="pricing.html">Подписка</a></li><li><a href="download.html">Скачать</a></li><li><a href="faq.html">FAQ</a></li></ul>
+				</div>
+				<div>
+					<h4>Сообщество</h4>
+					<ul><li><a data-link="discord">Discord</a></li><li><a data-link="telegram">Telegram</a></li><li><a data-link="buy">Купить ключ</a></li></ul>
+				</div>
+				<div>
+					<h4>Версия</h4>
+					<ul><li class="muted">SkiClient <span data-cfg="version"></span></li><li class="muted">Minecraft <span data-cfg="minecraft"></span></li><li class="muted">Fabric Loader <span data-cfg="loader"></span>+</li></ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<span>© <span data-year></span> SkiClient</span>
+				<span>Не является официальным продуктом Minecraft. Не одобрено и не связано с Mojang или Microsoft.</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/features.js"></script>
+</body>
+</html>
